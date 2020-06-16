@@ -1,1 +1,13 @@
-<p>chat-form works!</p>
+<div>
+  <label>
+    Nickname:
+    <input [(ngModel)]="nick" placeholder="Enter your nickname"/>
+  </label>
+</div>
+<div>
+  <label>
+    Message:
+    <input [(ngModel)]="content" placeholder="Enter your message"/>
+  </label>
+</div>
+<button (click)="onSend()">Send</button>
