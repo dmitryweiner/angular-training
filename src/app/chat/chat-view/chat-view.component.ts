@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Message} from '../../../interfaces/message';
+import {MessageService} from '../../message.service';
 
 @Component({
   selector: 'app-chat-view',
@@ -7,21 +8,12 @@ import {Message} from '../../../interfaces/message';
   styleUrls: ['./chat-view.component.scss']
 })
 export class ChatViewComponent implements OnInit {
-  messages: Message[] = [
-    {
-      nick: 'Nobody',
-      content: 'Test message'
-    },
-    {
-      nick: 'Anonymouse',
-      content: 'Another test message'
-    }
-  ];
+  messages: Message[];
 
-  constructor() {
-  }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.messageService.getMessages().subscribe(messages => this.messages = messages);
   }
 
   onSend(message): void {
