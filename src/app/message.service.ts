@@ -1,31 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {Message} from '../interfaces/message';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
+  private apiUrl = 'http://localhost:3001/';
 
-  messages: Message[] = [
-    {
-      nick: 'Nobody',
-      content: 'Test message'
-    },
-    {
-      nick: 'Anonymouse',
-      content: 'Another test message'
-    }
-  ];
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getMessages(): Observable<Message[]> {
-    return of(this.messages);
+    return this.http.get<Message[]>(this.apiUrl);
   }
 
-  sendMessage(message: Message): Observable<void> {
-    this.messages = [...this.messages, message];
-    return of();
+  sendMessage(message: Message): Observable<Message[]> {
+    return this.http.post<Message[]>(this.apiUrl, JSON.stringify(message));
   }
 }

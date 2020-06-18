@@ -14,12 +14,16 @@ export class ChatViewComponent implements OnInit {
 
   ngOnInit(): void {
     setInterval(() => {
-      this.messageService.getMessages().subscribe(messages => this.messages = messages);
+      this.messageService
+        .getMessages()
+        .subscribe(messages => this.messages = messages);
     }, 1000);
   }
 
   onSend(message): void {
-    this.messageService.sendMessage(message);
+    this.messageService
+      .sendMessage(message)
+      .subscribe(messages => this.messages = messages);
   }
 
 }
