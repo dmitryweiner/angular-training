@@ -1,2 +1,2 @@
 <app-messages-list [messages]="messages"></app-messages-list>
-<app-chat-form [onSendHandler]="onSend"></app-chat-form>
+<app-chat-form [onSendHandler]="onSend.bind(this)"></app-chat-form>

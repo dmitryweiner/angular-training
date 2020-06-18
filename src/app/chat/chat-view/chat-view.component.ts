@@ -13,11 +13,13 @@ export class ChatViewComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.messageService.getMessages().subscribe(messages => this.messages = messages);
+    setInterval(() => {
+      this.messageService.getMessages().subscribe(messages => this.messages = messages);
+    }, 1000);
   }
 
   onSend(message): void {
-    console.log('Sending message', message);
+    this.messageService.sendMessage(message);
   }
 
 }

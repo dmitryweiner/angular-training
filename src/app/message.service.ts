@@ -23,4 +23,9 @@ export class MessageService {
   getMessages(): Observable<Message[]> {
     return of(this.messages);
   }
+
+  sendMessage(message: Message): Observable<void> {
+    this.messages = [...this.messages, message];
+    return of();
+  }
 }
