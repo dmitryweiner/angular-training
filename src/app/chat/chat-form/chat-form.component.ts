@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-chat-form',
@@ -14,12 +14,16 @@ export class ChatFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input()
+  public onSendHandler: Function;
+
   onSend(): void {
     const message = {
       nick: this.nick,
-      conent: this.content
+      content: this.content
     };
-    console.log('Sending message', message);
+    this.onSendHandler(message);
+    this.content = '';
   }
 
 }

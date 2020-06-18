@@ -12,4 +12,8 @@ export class ChatViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSend(message): void {
+      console.log('Sending message', message);
+  }
+
 }
