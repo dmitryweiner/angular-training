@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Message} from '../../../interfaces/message';
 import {MessageService} from '../../message.service';
 
@@ -7,17 +7,24 @@ import {MessageService} from '../../message.service';
   templateUrl: './chat-view.component.html',
   styleUrls: ['./chat-view.component.scss']
 })
-export class ChatViewComponent implements OnInit {
+export class ChatViewComponent implements OnInit, OnDestroy {
+
   messages: Message[];
+
+  intervalId: number;
 
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.messageService
         .getMessages()
         .subscribe(messages => this.messages = messages);
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
   }
 
   onSend(message): void {
