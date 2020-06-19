@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ChatModule} from './chat/chat.module';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { PictureComponent } from './picture/picture.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PictureComponent
   ],
   imports: [
     BrowserModule,
